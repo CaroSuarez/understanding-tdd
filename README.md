@@ -128,3 +128,39 @@ After we've got to GREEN we move to the REFLECT step where the goal is to try an
 current state and identify any rectoring, that is, improvements to the code that could be made. Then we
 move to the step to actually do REFACTOR, if after the refactor the test still pass then our refactoring
 was successful and we can move on to the next test.
+
+================================================================================================================
+
+_EQUIVALENCE PARTITIONS_
+A group of values for which the behaviour of the code is the same
+
+_BOUNDARIES_
+Where two equivalence partitions meet, that is, where code changes from one behavior to another. The
+boundaries are important because they are the most valuable cases to be testing. Those cases on each side
+of the boundaries. It is important to always test around the boundaries!!!!
+
+================================================================================================================
+
+_GREEN BAR PATTERN: TRIANGULATION_
+
+Green bar pattern: known ways to get to GREEN.
+
+Write three test around a concept to draw out the solution: Fake it, fake it, make it (Fake it until you make it jejeje but just twice).
+
+================================================================================================================
+**NAMING**
+Naming is important, an difficult!
+It is important to use a good naming because code is read far more than writen. So the better we can make it easy to read and understand, the better
+for our brains, better for us.
+
+_The stages of naming_
+
+1. Nonsense: we don't know what the variable of function do. Ex. Cake.
+2. Accurate: the name is accurate, its not precise, its not detailed. Does not provide much information. Ex. Sum
+3. Precise: much more information for the reader. Long and verbose. Ex. sumOfAllTransactionsForAnAccount
+4. Meaningful: Still accurate, still precise but succinct, readable name. Ex. balance.
+
+So the main idea here is that the act of naming is a PROCESS. That is, very rarely we get a name right on out first try.
+
+So, in TDD the refactor step is where you stop and listen to the feedback that your code is giving you an do thing with it. One of
+those things is actively reflect on those names and each time try to move them a little bit more closer to the meaningful stage.

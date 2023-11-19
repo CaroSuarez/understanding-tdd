@@ -33,125 +33,92 @@ import { Result, rockPaperScissors, Show } from "../rock-paper-scissors";
 
 describe("rockPaperScissors", () => {
   describe("Player wins", () => {
-    test("Given a player who shows ROCK and an opponent who shows SCISSORS then return Player wins", () => {
-      // Arrange
-      const playerMove = Show.ROCK;
-      const opponentMove = Show.SCISSORS;
-      const expected = Result.PLAYER_WINS;
+    const table = [
+      {
+        playerMove: Show.ROCK,
+        opponentMove: Show.SCISSORS,
+        expected: Result.PLAYER_WINS,
+      },
+      {
+        playerMove: Show.PAPER,
+        opponentMove: Show.ROCK,
+        expected: Result.PLAYER_WINS,
+      },
+      {
+        playerMove: Show.SCISSORS,
+        opponentMove: Show.PAPER,
+        expected: Result.PLAYER_WINS,
+      },
+    ];
 
-      // Act
-      const actual = rockPaperScissors(playerMove, opponentMove);
-
-      // Assert
-      expect(actual).toBe(expected);
-    });
-
-    test("Given a player who shows PAPER and an opponent who shows ROCK then return Player wins", () => {
-      // Arrange
-      const playerMove = Show.PAPER;
-      const opponentMove = Show.ROCK;
-      const expected = Result.PLAYER_WINS;
-
-      // Act
-      const actual = rockPaperScissors(playerMove, opponentMove);
-
-      // Assert
-      expect(actual).toBe(expected);
-    });
-
-    test("Given a player who shows SCISSORS and an opponent who shows PAPER then return Player wins", () => {
-      // Arrange
-      const playerMove = Show.SCISSORS;
-      const opponentMove = Show.PAPER;
-      const expected = Result.PLAYER_WINS;
-
-      // Act
-      const actual = rockPaperScissors(playerMove, opponentMove);
-
-      // Assert
-      expect(actual).toBe(expected);
-    });
+    test.each(table)(
+      "Player moves $playerMove and opponent moves $opponentMove",
+      ({ playerMove, opponentMove, expected }) => {
+        // Act
+        const actual = rockPaperScissors(playerMove, opponentMove);
+        // Assert
+        expect(actual).toBe(expected);
+      }
+    );
   });
 
   describe("Player loses", () => {
-    test("Given a player who shows ROCK and an opponent who shows PAPER then return Player loses", () => {
-      // Arrange
-      const playerMove = Show.ROCK;
-      const opponentMove = Show.PAPER;
-      const expected = Result.PLAYER_LOSES;
+    const table = [
+      {
+        playerMove: Show.ROCK,
+        opponentMove: Show.PAPER,
+        expected: Result.PLAYER_LOSES,
+      },
+      {
+        playerMove: Show.PAPER,
+        opponentMove: Show.SCISSORS,
+        expected: Result.PLAYER_LOSES,
+      },
+      {
+        playerMove: Show.SCISSORS,
+        opponentMove: Show.ROCK,
+        expected: Result.PLAYER_LOSES,
+      },
+    ];
 
-      // Act
-      const actual = rockPaperScissors(playerMove, opponentMove);
-
-      // Assert
-      expect(actual).toBe(expected);
-    });
-
-    test("Given a player who shows PAPER and an opponent who shows SCISSORS then return Player loses", () => {
-      // Arrange
-      const playerMove = Show.PAPER;
-      const opponentMove = Show.SCISSORS;
-      const expected = Result.PLAYER_LOSES;
-
-      // Act
-      const actual = rockPaperScissors(playerMove, opponentMove);
-
-      // Assert
-      expect(actual).toBe(expected);
-    });
-
-    test("Given a player who shows SCISSORS and an opponent who shows ROCK then return Player loses", () => {
-      // Arrange
-      const playerMove = Show.SCISSORS;
-      const opponentMove = Show.ROCK;
-      const expected = Result.PLAYER_LOSES;
-
-      // Act
-      const actual = rockPaperScissors(playerMove, opponentMove);
-
-      // Assert
-      expect(actual).toBe(expected);
-    });
+    test.each(table)(
+      "Player loses",
+      ({ playerMove, opponentMove, expected }) => {
+        // Act
+        const actual = rockPaperScissors(playerMove, opponentMove);
+        // Assert
+        expect(actual).toBe(expected);
+      }
+    );
   });
 
   describe("Tie", () => {
-    test("Given a player who shows ROCK and an opponent who shows ROCK then return tie", () => {
-      // Arrange
-      const playerMove = Show.ROCK;
-      const opponentMove = Show.ROCK;
-      const expected = Result.TIE;
+    const table = [
+      {
+        playerMove: Show.ROCK,
+        opponentMove: Show.ROCK,
+        expected: Result.TIE,
+      },
+      {
+        playerMove: Show.PAPER,
+        opponentMove: Show.PAPER,
+        expected: Result.TIE,
+      },
+      {
+        playerMove: Show.SCISSORS,
+        opponentMove: Show.SCISSORS,
+        expected: Result.TIE,
+      },
+    ];
 
+    test.each(table)("Tie", ({ playerMove, opponentMove, expected }) => {
       // Act
       const actual = rockPaperScissors(playerMove, opponentMove);
-
-      // Assert
-      expect(actual).toBe(expected);
-    });
-
-    test("Given a player who shows PAPER and an opponent who shows PAPER then return Tie", () => {
-      // Arrange
-      const playerMove = Show.PAPER;
-      const opponentMove = Show.PAPER;
-      const expected = Result.TIE;
-
-      // Act
-      const actual = rockPaperScissors(playerMove, opponentMove);
-
-      // Assert
-      expect(actual).toBe(expected);
-    });
-
-    test("Given a player who shows SCISSORS and an opponent who shows SCISSORS then return tie", () => {
-      // Arrange
-      const playerMove = Show.SCISSORS;
-      const opponentMove = Show.SCISSORS;
-      const expected = Result.TIE;
-
-      // Act
-      const actual = rockPaperScissors(playerMove, opponentMove);
-
       // Assert
       expect(actual).toBe(expected);
     });
   });
 });
+
+// NOTE: It is important to note that there is a table and test.each for each equivalence partition. So
+// it is better organized than having just one table and test covering all the cases.
