@@ -162,5 +162,52 @@ _The stages of naming_
 
 So the main idea here is that the act of naming is a PROCESS. That is, very rarely we get a name right on out first try.
 
-So, in TDD the refactor step is where you stop and listen to the feedback that your code is giving you an do thing with it. One of
+So, in TDD the refactor step is where you stop and listen to the feedback that your code is giving you and do things with it. One of
 those things is actively reflect on those names and each time try to move them a little bit more closer to the meaningful stage.
+
+================================================================================================================
+**GREEN BAR PATTERNS (known ways to get to green in TDD) AND TDD GEARS**
+
+_One-to-many pattern_
+If have a problem to be resolved and that problem has many items, try to resolve those items
+one by one and not all of them at once.
+
+_Obvious patter_
+Go ahead and write the obvious implementation. If it fails, undo and try another path. Remember to still refactor!
+
+_Backout patter_
+Undo to get back to green.
+We need to listen to what tests are telling us. Two fails in a row could mean it is necessary to backout and take a fresh start.
+
+_Learning test_
+Try wring an implementation directly in a test to see if it will work. Learning test to checko your assumptions.
+This way we have quick feedback on our code.
+Some scenarios: During refactoring, After a backout, Exploring a new module/API without writing any production code.
+Is a fast feedback mechanism.
+
+_TDD GEARS_
+
+CORE:
+FIRST Principles
+Red Green Refactor
+Equivalence Partitions and Boundaries
+
+LOW (Uncertain, not confident!):
+3 laws of TDD
+The stages of naming
+Fake-it!
+Triangulation
+Onte-to-many
+Learning test
+
+MEDIUM (Some familiarity, confidence):
+Obvious
+
+HIGH (Familiar domain, confident):
+Still need to consider the CORE gear
+Build the whole test all in one go
+
+REVERSE (Red/Red/Reverse):
+Backout
+
+================================================================================================================
