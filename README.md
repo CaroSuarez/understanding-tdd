@@ -211,3 +211,44 @@ REVERSE (Red/Red/Reverse):
 Backout
 
 ================================================================================================================
+**TEST DOUBLES**
+Used to avoid executing external dependencies when testing.
+A dependency is simply another code that our system under test depends up on run
+We use test doubles so the tests can be Fast, Isolated, Repeatable
+
+Two main styles for test doubles:
+_London Style:_ heavy use of test doubles
+_Chicago Style:_ minimize use of test doubles
+
+_FAKES_
+An object with ah simplified working implementation
+Needs it in order to opperate. Just enables it to run.
+
+Rules:
+
+1. Only for indirect input
+2. Not used for control
+3. Not used for assertion
+
+Only there because the System Under Test (SUT) has to have it to function, but not actually involved.
+
+_STUBS_
+Is an object that provides predefined data.
+Returns controlled data.
+
+Rules:
+
+1. Can be used for indirect input
+2. Cab be used for control
+3. Not used for assertion
+
+_MOCKS_
+An object that records calls received, and verifies them against expected calls
+
+Rules:
+
+1. Can be used for indirect input
+2. Can be used for control
+3. Used for assertions
+
+As soon as we are asserting on the test double, it is a mock
