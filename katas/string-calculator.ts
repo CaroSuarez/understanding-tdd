@@ -2,7 +2,7 @@ export const stringCalculator = (stringNumber: string) => {
   let delimiter = ",";
   let input = stringNumber;
 
-  if (stringNumber.slice(0, 2) === "//") {
+  if (stringNumber.startsWith("//")) {
     delimiter = stringNumber.charAt(2);
     input = stringNumber.slice(3);
   }
@@ -15,10 +15,17 @@ export const stringCalculator = (stringNumber: string) => {
   const stringNumbersArray = stringNumberWithOnlyDelimiter.split(delimiter);
   const numbersArray = stringNumbersArray.map((numberAsString) => {
     if (numberAsString) {
-      return parseInt(numberAsString);
+      const parsedNumber = parseInt(numberAsString);
+      return parsedNumber > 1000 ? 0 : parsedNumber;
     } else {
       return 0;
     }
   });
+
+  const negativeNumbers = numbersArray.filter((n) => n < 0);
+
+  if (negativeNumbers.length) {
+    throw new Error(`negatives not allowed: ${negativeNumbers.toString()}`);
+  }
   return numbersArray.reduce((current, total) => total + current);
 };

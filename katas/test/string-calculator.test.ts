@@ -47,15 +47,13 @@ describe("string calculator", () => {
       { stringInput: "99", expected: 99 },
       { stringInput: "100", expected: 100 },
       { stringInput: "999", expected: 999 },
-      { stringInput: "1000", expected: 1000 },
-      { stringInput: "1999", expected: 1999 },
-      { stringInput: "10000", expected: 10000 },
     ];
     it.each(table)(
       "should return $expected given an string input $stringInput",
       ({ stringInput, expected }) => {
         //act
         const actual = stringCalculator(stringInput);
+        //assert
         expect(actual).toBe(expected);
       }
     );
@@ -85,6 +83,7 @@ describe("string calculator", () => {
       ({ stringInput, expected }) => {
         //act
         const actual = stringCalculator(stringInput);
+        //assert
         expect(actual).toBe(expected);
       }
     );
@@ -99,15 +98,13 @@ describe("string calculator", () => {
       { stringInput: "100, 20, 30", expected: 150 },
       { stringInput: "100, 200, 30", expected: 330 },
       { stringInput: "100, 200, 300", expected: 600 },
-      { stringInput: "1000, 200, 300", expected: 1500 },
-      { stringInput: "1000, 2000, 300", expected: 3300 },
-      { stringInput: "1000, 2000, 3000", expected: 6000 },
     ];
     it.each(table)(
       "should return $expected given an string input $stringInput",
       ({ stringInput, expected }) => {
         //act
         const actual = stringCalculator(stringInput);
+        //assert
         expect(actual).toBe(expected);
       }
     );
@@ -115,20 +112,16 @@ describe("string calculator", () => {
 
   describe("stringCalculator should be able to handle unkown amount of numbers", () => {
     const table = [
-      { stringInput: "1, 2, 3", expected: 6 },
-      { stringInput: "10, 2, 3, 2000", expected: 2015 },
+      { stringInput: "1,2,3", expected: 6 },
       { stringInput: "10", expected: 10 },
       { stringInput: "10, 20, 30, 1, 2, 7, 80", expected: 150 },
-      {
-        stringInput: "100, 20, 30, 1, 10, 99, 1000, 600, 3, 6, 8, 11, 25, 643",
-        expected: 2556,
-      },
     ];
     it.each(table)(
       "should return $expected given an string input $stringInput",
       ({ stringInput, expected }) => {
         //act
         const actual = stringCalculator(stringInput);
+        //assert
         expect(actual).toBe(expected);
       }
     );
@@ -145,6 +138,7 @@ describe("string calculator", () => {
       ({ stringInput, expected }) => {
         //act
         const actual = stringCalculator(stringInput);
+        //assert
         expect(actual).toBe(expected);
       }
     );
@@ -155,13 +149,55 @@ describe("string calculator", () => {
       { stringInput: "//;\n1;2", expected: 3 },
       { stringInput: "//?\n10?34", expected: 44 },
       { stringInput: "//.\n777.52", expected: 829 },
-      { stringInput: "//´\n1964´7325", expected: 9289 },
     ];
     it.each(table)(
       "should return $expected given an string input $stringInput",
       ({ stringInput, expected }) => {
         //act
         const actual = stringCalculator(stringInput);
+        //assert
+        expect(actual).toBe(expected);
+      }
+    );
+  });
+
+  describe("Calling stringCalculator() with a negative number in the input will throw an exception “negatives not allowed” - and the negative that was passed, if there are multiple negatives, show all of them in the exception message", () => {
+    const table = [
+      { stringInput: "//;\n1;-2", expected: "negatives not allowed: -2" },
+      { stringInput: "//;\n-1;2", expected: "negatives not allowed: -1" },
+      { stringInput: "//;\n-1;-2", expected: "negatives not allowed: -1,-2" },
+    ];
+    it.each(table)(
+      "should throw error $expected given an string input $stringInput",
+      ({ stringInput, expected }) => {
+        //act, assert
+        expect(() => stringCalculator(stringInput)).toThrow(expected);
+      }
+    );
+  });
+
+  describe(" Numbers bigger than 1000 should be ignored, so adding 2 + 1001 = 2", () => {
+    const table = [
+      { stringInput: "//;\n1000;2", expected: 1002 },
+      { stringInput: "1000", expected: 1000 },
+      { stringInput: "1999", expected: 0 },
+      { stringInput: "10000", expected: 0 },
+      { stringInput: "1000, 200, 300", expected: 1500 },
+      { stringInput: "1000, 2000, 300", expected: 1300 },
+      { stringInput: "1000, 2000, 3000", expected: 1000 },
+      {
+        stringInput: "100, 20, 30, 1, 10, 99, 1000, 600, 3, 6, 8, 11, 25, 643",
+        expected: 2556,
+      },
+      { stringInput: "//´\n1964´7325", expected: 0 },
+      { stringInput: "10, 2, 3, 2000", expected: 15 },
+    ];
+    it.each(table)(
+      "should return $expected given an string input $stringInput",
+      ({ stringInput, expected }) => {
+        //act
+        const actual = stringCalculator(stringInput);
+        //assert
         expect(actual).toBe(expected);
       }
     );
