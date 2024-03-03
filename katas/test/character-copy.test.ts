@@ -79,16 +79,16 @@ describe("characterCopy", () => {
   });
   describe("one character and newline", () => {
     const table = [
-      { chars: ["l", "\n"] },
-      { chars: ["1", "\n"] },
-      { chars: ["a", "\n"] },
-      { chars: ["b", "\n"] },
-      { chars: ["!", "\n"] },
+      { chars: ["l", "n"] },
+      { chars: ["1", "n"] },
+      { chars: ["a", "n"] },
+      { chars: ["b", "n"] },
+      { chars: ["!", "n"] },
     ];
     it.each(table)("should return $chars for string $chars", ({ chars }) => {
       // arrange
       const mockSource = jest.fn();
-      mockSource.mockReturnValue("\n");
+      mockSource.mockReturnValue("n");
       mockSource.mockReturnValueOnce(chars[0]);
       mockSource.mockReturnValueOnce(chars[1]);
       const mockDestination = jest.fn();
