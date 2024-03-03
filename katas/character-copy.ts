@@ -9,11 +9,10 @@ export const characterCopy = (
   source: sourceFunction,
   destination: destinationFunction
 ) => {
-  const newlineCharacter = "n";
+  const newlineCharacter = "\n";
   let sourceCharacter = source();
 
-  if (sourceCharacter !== "n") {
+  if (sourceCharacter !== newlineCharacter) {
     destination(sourceCharacter);
-    sourceCharacter = source();
   }
 };
