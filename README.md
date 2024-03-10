@@ -252,3 +252,56 @@ Rules:
 3. Used for assertions
 
 As soon as we are asserting on the test double, it is a mock
+
+================================================================================================================
+**SOLID PRINCIPLES**
+
+_S: Single responsability principle_
+A class, function, component, etc... should have only one reason to change.
+
+What is one reason to change?
+Think about the reason to change in terms of responsability.
+
+What is responsability?
+Concerns that the code has: Things that the code needs to accomplish. If the code has
+multimple concerns, then has multiple reason to change and therefore multiple responsabilities.
+
+Concepts that code is representing: ideas represented in the class/module/function/component.
+e.g. a Person Class with some:
+
+- characteristics of the person (name, contact number, address, etc...)
+- information about ther credit history
+  those are two different concepts and they are probably going to change at different rates or for different reason. Then
+  with multiple concepts represented, has multiple reasons to change.
+
+_O: Open/Close principle_
+
+"Software entities should be open for extension bue close for modification"
+
+-Open for extension: Can be extended in order to change its behavior.
+-Closed for modification: Not necessary to change its source code to make the change in behaviour.
+
+The main idea of this principle is to be able to change the behavior of a system only by adding code,
+not by editing the existing code.
+
+It's not easy to predict all that can happen, but, do it at some reasonable extension.
+
+_L: Liskov substitution principle_
+"Subtypes must be substitutable for their base types"
+Code that depends on an abstraction should be able to use any implementation of that abstraction.
+
+Counter-example: implement an interface, but throw error.
+More restrictive validation on the subtype.
+
+_I: Interface segregation principle_
+"Clients should not be forced to depend on methods they don't use"
+Interfaces (classe, types, etc...) should be kept as small as possible.
+
+_D:Dependency invertion principle_
+a. High-level modules should not depend on low-level modules. Both should depend on abstractions.
+b. Abstractions should not depend on details. Details should depend on abstracions.
+
+High-level: your core domain, core functionality
+Low-level: not core domain (e.g. persistence)
+Abstraction: Interfaces, function signatures, anything that describes a contract and has implementations.
+Details: Concrete implementation of abstractions
